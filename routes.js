@@ -8,6 +8,7 @@ const loginController = require('./source/controllers/login.js');
 route.get('/', homeController.index);
 
 // Login
-route.get('/login/index', loginController.index)
+route.get('/login/index', loginController.index);
+route.post('/login/register', loginController.register);
 
 module.exports = route;
