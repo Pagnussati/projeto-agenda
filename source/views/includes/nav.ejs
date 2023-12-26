@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Agenda</a>
+    <a class="navbar-brand" href="/">Contacs list</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,16 +9,16 @@
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/contatos/index">Cadastrar</a>
+          <a class="nav-link active" aria-current="page" href="/contatos/index">Create</a>
         </li>
 
         <% if(user) { %>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/login/logout">Sair</a>
+            <a class="nav-link active" aria-current="page" href="/login/logout">Log out</a>
           </li>
         <% } else {%>  
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/login/index">Entrar</a>
+            <a class="nav-link active" aria-current="page" href="/login/index">Login</a>
           </li>
         <% } %>  
 
