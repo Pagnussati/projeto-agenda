@@ -14,29 +14,25 @@ const ContactModel = mongoose.model('Contact', ContactSchema);
 function Contact(body){
     this.body = body;
     this.errors = [];
-    this.contact =null
+    this.contact = null
 }
 
-Contact.searchById = async (id) => {
-    if (typeof id !== 'String') return;
-    const user = await ContactModel.findById(id);
-    return user;
-};
-
-Contact.prototype.register =async function() {
+Contact.prototype.register = async function() {
     this.validate();
-    if(this.errors.lenght > 0) return;
-    await ContactModel.create(this.body)
+
+    if(this.errors.length > 0) return;
+    this.contact = await ContactModel.create(this.body);
 };
 
 Contact.prototype.validate = function() {
     this.cleanUp();
 
-    if (this.body.email && !validator.isEmail(this.body.email)) this.errors.push('Invalid E-mail');
-    if (this.body.nome) this.errors.push('Name is an required field');
-    if (this.body.email && this.body.telefone) this.errors.push('Email or Telephone might be filled');
-    //if (this.body.password.length < 3 || this.body.password.length >= 50) this.errors.push('Password between 3 and 50 characters')
-}
+    if (this.body.email && !validator.isEmail(this.body.email)) this.errors.push('E-mail invalido!');
+    if (!this.body.name) this.errors.push('Nome deve ser preenchido');
+    if (!this.body.email && !this.body.telephone) {
+        this.errors.push('Email ou telefone deve ser preenchido');
+    };
+};
 
 Contact.prototype.cleanUp = function() {
     for (const key in this.body) {
@@ -52,6 +48,12 @@ Contact.prototype.cleanUp = function() {
         telephone: this.body.telefone,
         
     };
-}
+};
+
+Contact.searchById = async function(id){
+    if (typeof id !== 'string') return;
+    const contato = await ContactModel.findById(id);
+    return contato;
+}; 
 
 module.exports = Contact;
