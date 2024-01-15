@@ -7,31 +7,31 @@
                 <div class="col-lg-2"></div>
 
                 <div class="col-lg-8 my-3">
-                    <h1 class="text-center">Sign in or Login!</h1>
-                    <p class="text-center lead">Do you login or sign in here!</p>
+                    <h1 class="text-center">Cadastre-se ou entre!</h1>
+                    <p class="text-center lead">Faça seu login ou cadastro aqui!</p>
 
                     <%- include('./includes/messages') %>
 
                     <div class="row">
                         <div class="col-lg">
-                            <h4>Sign in</h4>
+                            <h4>Cadastro</h4>
                             <form action="/login/register" method="post">
                                 <input type="hidden" name="_csrf" value=<%= csrfToken %> >
                                 <div class="form-group">
-                                    <label>Your email</label>
+                                    <label>Seu email</label>
                                     <input type="email" class="form-control" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label>Your password</label>
+                                    <label>Sua senha</label>
                                     <input type="password" class="form-control" name="password">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Create account</button>
+                                <button type="submit" class="btn btn-primary">Criar conta</button>
                             </form>
 
                         </div>
 
                         <div class="col-lg">
-                            <h4>Login</h4>
+                            <h4>Entrar</h4>
                             <form action="/login/login" method="post">
                                 <input type="hidden" name="_csrf" value=<%= csrfToken %> >
                                 <div class="form-group">
@@ -39,10 +39,10 @@
                                     <input type="email" class="form-control" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label>Senha</label>
                                     <input type="password" class="form-control" name="password">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Login</button>
+                                <button type="submit" class="btn btn-primary">Entrar</button>
                             </form>
                         </div>
 

@@ -35,3 +35,46 @@ exports.editIndex = async function (req,res) {
 
     res.render('contact', { contato })
 };
+
+exports.edit = async function(req, res) {
+    try {
+      if(!req.params.id) return res.render('error');
+      const contato = new Contact(req.body);
+      await contato.edit(req.params.id);
+  
+      if(contato.errors.length > 0) {
+        req.flash('errors', contato.errors);
+        req.session.save(() => res.redirect('/contatos/index'));
+        return;
+      }
+  
+      req.flash('success', 'Contato editado com sucesso.');
+      req.session.save(() => res.redirect(`/contatos/index/${contato.contato._id}`));
+      return;
+    } catch(e) {
+      console.log(e);
+      res.render('error');
+    }
+  };
+
+// exports.edit = async function (req, res) {
+//     try {
+//         if (!req.params.id) return res.render('error');
+//         const contato = new Contact(req.body);
+//         await contato.edit(req.params.id);
+
+//         if (contato.errors.length > 0) {
+//             req.flash('errors', contato.errors);
+//             req.session.save(() => res.redirect(`/contatos/index/${req.params.id}`)); 
+//             return;
+//         }
+
+//         req.flash('success', 'Contato editado com sucesso.');
+//     } catch (error) {
+//         console.log(error);
+//         req.flash('errors', ['Erro interno no servidor.']);
+//     }
+
+//     req.session.save(() => res.redirect(`/contatos/index/${req.params.id}`)); 
+
+// };

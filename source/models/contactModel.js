@@ -56,4 +56,11 @@ Contact.searchById = async function(id){
     return contato;
 }; 
 
+Contact.prototype.edit = async function(id) {
+    if(typeof id !== 'string') return;
+    this.validate();
+    if(this.errors.length > 0) return;
+    this.contato = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
+  };
+
 module.exports = Contact;
