@@ -50,17 +50,30 @@ Contact.prototype.cleanUp = function() {
     };
 };
 
+Contact.prototype.edit = async function(id) {
+    if(typeof id !== 'string') return;
+    this.validate();
+    if(this.errors.length > 0) return;
+    this.contato = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
+};
+
+// Static methods (dont go to the prototype)
 Contact.searchById = async function(id){
     if (typeof id !== 'string') return;
     const contato = await ContactModel.findById(id);
     return contato;
 }; 
 
-Contact.prototype.edit = async function(id) {
+Contact.searchContacts = async function(id){
+    const contato = await ContactModel.find(id)
+        .sort( { createDate: -1 } )
+    return contato;
+}; 
+
+Contact.delete = async function(id){
     if(typeof id !== 'string') return;
-    this.validate();
-    if(this.errors.length > 0) return;
-    this.contato = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
-  };
+    const contato = await ContactModel.findOneAndDelete({_id: id});
+    return contato;
+}; 
 
 module.exports = Contact;

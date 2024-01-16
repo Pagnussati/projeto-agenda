@@ -12,7 +12,7 @@
 
             <%- include('includes/messages') %>
 
-            <% if(typeof contato !== 'undefined') { %>
+            <% if(contato.id) { %>
                 <form action="/contatos/edit/<%= contato._id %>" method="POST">
             <% } else { %>
                 <form action="/contatos/register" method="POST">

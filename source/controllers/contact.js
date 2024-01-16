@@ -33,7 +33,7 @@ exports.editIndex = async function (req,res) {
     const contato = await Contact.searchById(req.params.id);
     if(!contato) return res.render('error');
 
-    res.render('contact', { contato })
+    res.render('contact', { contato });
 };
 
 exports.edit = async function(req, res) {
@@ -56,3 +56,14 @@ exports.edit = async function(req, res) {
       res.render('error');
     }
   };
+
+exports.delete = async function(req, res) {
+    if(!req.params.id) return res.render('error');
+
+    const contato = await Contact.delete(req.params.id);
+    if(!contato) return res.render('error');
+
+    req.flash('success', 'Contato apagado com sucesso.');
+      req.session.save(() => res.redirect(`/`));
+      return;
+};
