@@ -7,7 +7,11 @@ const app = express();
 const mongoose = require('mongoose');
 
 // Conexão com o banco de dados MongoDB usando a string de conexão definida no arquivo .env
-mongoose.connect(process.env.CONNECTIONSTRING)
+mongoose.connect(process.env.CONNECTIONSTRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
     .then(() => { app.emit('Ready') })  // Emite o evento 'Ready' quando a conexão é estabelecida com sucesso
     .catch((e) => { console.log(e) });
 
