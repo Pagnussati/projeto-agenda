@@ -12,7 +12,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, {
     useUnifiedTopology: true,
     useFindAndModify: false
   })
-    .then(() => { app.emit('Ready') })  // Emite o evento 'Ready' quando a conexão é estabelecida com sucesso
+    .then(() => { app.emit('Ready'); console.log('Conectado na base de dados') })  // Emite o evento 'Ready' quando a conexão é estabelecida com sucesso
     .catch((e) => { console.log(e) });
 
 // Importação de módulos para gerenciamento de sessões, armazenamento no MongoDB, flash messages, etc.
@@ -72,7 +72,7 @@ app.use(routes);
 
 // Aguarda o evento 'Ready' e inicia o servidor na porta 3000
 app.on('Ready', () => {
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
         console.log('Acesse http://localhost:3000');
         console.log('Servidor está aberto');
     });
